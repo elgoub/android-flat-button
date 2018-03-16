@@ -13,15 +13,15 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 
-import info.hoang8f.fbutton.R;
+
+
 
 /**
  * Created by hoang8f on 5/5/14.
  */
 
-public class FButton extends Button implements View.OnTouchListener {
+public class FButton extends android.support.v7.widget.AppCompatButton implements View.OnTouchListener {
 
     //Custom values
     private boolean isShadowEnabled = true;
@@ -112,17 +112,18 @@ public class FButton extends Button implements View.OnTouchListener {
             int attr = typedArray.getIndex(i);
             if (attr == R.styleable.FButton_shadowEnabled) {
                 isShadowEnabled = typedArray.getBoolean(attr, true); //Default is true
-            } else if (attr == R.styleable.FButton_fButtonColor) {
-                mButtonColor = typedArray.getColor(attr, R.color.fbutton_default_color);
+            } else if (attr == R.styleable.FButton_buttonColor) {
+                mButtonColor = typedArray.getColor(attr,getResources().getColor(R.color.fbutton_default_color) );
             } else if (attr == R.styleable.FButton_shadowColor) {
-                mShadowColor = typedArray.getColor(attr, R.color.fbutton_default_shadow_color);
+                mShadowColor = typedArray.getColor(attr,getResources().getColor( R.color.fbutton_default_shadow_color));
                 isShadowColorDefined = true;
             } else if (attr == R.styleable.FButton_shadowHeight) {
-                mShadowHeight = typedArray.getDimensionPixelSize(attr, R.dimen.fbutton_default_shadow_height);
+                mShadowHeight = typedArray.getDimensionPixelSize(attr,(int)getResources().getDimension(R.dimen.fbutton_default_shadow_height) );
             } else if (attr == R.styleable.FButton_cornerRadius) {
-                mCornerRadius = typedArray.getDimensionPixelSize(attr, R.dimen.fbutton_default_conner_radius);
+                mCornerRadius = typedArray.getDimensionPixelSize(attr,(int)getResources().getDimension(R.dimen.fbutton_default_conner_radius));
             }
         }
+
         typedArray.recycle();
 
         //Get paddingLeft, paddingRight
@@ -158,7 +159,7 @@ public class FButton extends Button implements View.OnTouchListener {
             mShadowColor = Color.HSVToColor(alpha, hsv);
         }
         //Create pressed background and unpressed background drawables
-		
+
         if (this.isEnabled()) {
             if (isShadowEnabled) {
                 pressedDrawable = createDrawable(mCornerRadius, Color.TRANSPARENT, mButtonColor);
@@ -172,7 +173,7 @@ public class FButton extends Button implements View.OnTouchListener {
             Color.colorToHSV(mButtonColor, hsv);
             hsv[1] *= 0.25f; // saturation component
             int disabledColor = mShadowColor = Color.HSVToColor(alpha, hsv);
-			// Disabled button does not have shadow
+            // Disabled button does not have shadow
             pressedDrawable = createDrawable(mCornerRadius, disabledColor, Color.TRANSPARENT);
             unpressedDrawable = createDrawable(mCornerRadius, disabledColor, Color.TRANSPARENT);
         }
