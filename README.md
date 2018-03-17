@@ -10,16 +10,6 @@ Screenshot
 ----------
 ![](https://raw.githubusercontent.com/hoang8f/android-flat-button/master/screenshot/screenshot.gif)
 
-Including in your project
--------------------------
-###Using JitPack
-FButton Library is pushed to JitPack, so you just need to add the following dependency to your `build.gradle`.
-
-    dependencies {
-	        compile 'com.github.jd-alexander:android-flat-button:v1.1'
-    }
-
-
 ###Manually
 Copy/merge the following files to corresponding folder/file:
    + info/hoang8f/widget/FButton.java
